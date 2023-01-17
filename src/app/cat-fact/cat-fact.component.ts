@@ -18,7 +18,6 @@ export class CatFactComponent implements OnInit {
   ) {}
 
   /*
-
     Данный метод вызывается при первой инициализации компонента!
     
     ngOnInit один из методов Angular Hooks
@@ -34,10 +33,8 @@ export class CatFactComponent implements OnInit {
     this.getFact();
   }
 
-  /*
-    Данный метод возвращает найденный в интернете случайный факт про котов.
-    Используется сервис CatFactDatasourceService
-  */
+  /* Данный метод возвращает найденный в интернете случайный факт про котов.
+    Используется сервис CatFactDatasourceService */
   public getFact(): void {
     /*
       Метод subscribe предоставляется объектом Observable который вызвращает метов getFacts сервиса CatFactDatasourceService
