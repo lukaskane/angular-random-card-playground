@@ -1,0 +1,11 @@
+.item-container {
+  padding: 4px 8px;
+  margin: 4px;
+
+  border: 1px solid rgba(155, 155, 155, 0.425);
+  border-radius: 4px;
+}
+
+* {
+  font-family: 'Courier New', Courier, monospace;
+}

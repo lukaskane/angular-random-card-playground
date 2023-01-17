@@ -1,0 +1,19 @@
+<!-- 
+  Еще один компонент app-card-info принимает 3 input параметра:
+    - category
+    - title
+    - content
+  и на основе их значений отрисовывает карточку
+  
+  Используется во всех 3х компонентах:
+  - cat-fact
+  - random-idea
+  - random-joke
+ -->
+
+<app-info-card
+  *ngIf="!!fact"
+  category="Cat fact"
+  title="Did you know?"
+  [content]="fact"
+></app-info-card>
