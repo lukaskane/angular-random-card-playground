@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { interval, takeWhile, map } from 'rxjs';
 
 /* @Component - Данный декоратор обозначает класс как Angular Component, с соответсвующими метаданными
  * в данном случае указаны следующие метаданные: */
@@ -55,7 +56,12 @@ export class AppComponent {
    * - делает массив items пустым, тем самым очищая страницу
    */
   clear(): void {
-    this.items = [];
+    interval(200)
+      .pipe(
+        takeWhile(() => this.items.length > 0),
+        map(() => this.items.length - 1)
+      )
+      .subscribe((lastIndex) => this.items.splice(lastIndex, 1));
   }
 
   /**
