@@ -43,6 +43,11 @@ export class AppComponent {
     if (!cardType) return;
 
     this.items.push(cardType);
+    this.cardType.setValue('');
+  }
+
+  get certainCardTypeSet(): boolean {
+    return !!this.cardType.value;
   }
 
   /**

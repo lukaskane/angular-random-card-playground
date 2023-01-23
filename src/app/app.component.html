@@ -1,52 +1,44 @@
-<!-- 
+<nav class="navbar navbar-light mb-2" style="background-color: #e3f2fd;">
+  <a class="navbar-brand" href="#">Angular Sandbox</a>
+</nav>
 
-  Доступные компоненты/html теги:
-    - cat-fact
-      отрисовывает карточку со случайным фактом про котов
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-2 col-md-4 col-sm-12">
+      <button class="btn btn-block btn-primary ml-1 mt-1" (click)="addRandom()">
+        add random item
+      </button>
 
-    - random-joke
-      отрисовывает карточку со случайной шуткой
+      <select class="form-control mt-1 ml-1" [formControl]="cardType">
+        <option value="">None</option>
+        <option value="cat-fact">Cat fact</option>
+        <option value="random-joke">Random Joke</option>
+        <option value="random-activity">Random Activity</option>
+      </select>
 
-    - random-idea
-      отрисовывает карточку со случайной идеей
--->
+      <button
+        class="btn btn-block btn-primary ml-1 mt-1"
+        (click)="addCertain()"
+        *ngIf="certainCardTypeSet"
+      >
+        Add Certain
+      </button>
 
-<!-- Следующий код позволяет добавить на страницу случайную карточку при нажатии на кнопку add random item -->
-<!-- 
-  Обратите внимание на свойство (click)! 
-  В данном примере таким образом привязывается метод addRandom/clear к событию нажатия кнопки.
--->
-<button (click)="addRandom()">add random item</button>
-<button (click)="clear()">clear</button>
+      <button
+        class="btn btn-block btn-danger ml-1 mt-1"
+        (click)="clear()"
+        *ngIf="items.length"
+      >
+        clear
+      </button>
+    </div>
 
-<br />
-<br />
-
-<select [formControl]="cardType">
-  <option value="">None</option>
-  <option value="cat-fact">Cat fact</option>
-  <option value="random-joke">Random Joke</option>
-  <option value="random-activity">Random Activity</option>
-</select>
-
-<button (click)="addCertain()">Add Certain</button>
-
-<!-- 
-  Обратите внимание на директиву *ngFor!
-  Он похож на директиву ng-repeat в angular.js, но с небольшими синтаксическими изменениями
-
-  В данном случае тэг div будет повторятся для каждого элемента массива items, с привязкой переменной item со значением текущего элемента массива
- -->
-<div *ngFor="let item of items">
-  <!-- 
-    Обратите внимание на директиву *ngIf!
-    
-    Он похож на директиву ng-if в angular.js, выполняет ту же функцию.
-    С его помощью можно определить видимость элемента, в зависимости от заданного условия
-    *ngIf = "expression" -> элемент будет отрисовываться исключительно когда expression === true
-  
-  -->
-  <cat-fact *ngIf="item == 'cat-fact'"></cat-fact>
-  <random-joke *ngIf="item == 'random-joke'"></random-joke>
-  <random-idea *ngIf="item === 'random-idea'"></random-idea>
+    <div class="col-lg-10 col-md-8 col-sm-12">
+      <div *ngFor="let item of items" class="mt-1">
+        <cat-fact *ngIf="item == 'cat-fact'"></cat-fact>
+        <random-joke *ngIf="item == 'random-joke'"></random-joke>
+        <random-idea *ngIf="item === 'random-idea'"></random-idea>
+      </div>
+    </div>
+  </div>
 </div>
