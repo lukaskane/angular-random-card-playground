@@ -19,6 +19,18 @@
 <button (click)="addRandom()">add random item</button>
 <button (click)="clear()">clear</button>
 
+<br />
+<br />
+
+<select [formControl]="cardType">
+  <option value="">None</option>
+  <option value="cat-fact">Cat fact</option>
+  <option value="random-joke">Random Joke</option>
+  <option value="random-activity">Random Activity</option>
+</select>
+
+<button (click)="addCertain()">Add Certain</button>
+
 <!-- 
   Обратите внимание на директиву *ngFor!
   Он похож на директиву ng-repeat в angular.js, но с небольшими синтаксическими изменениями

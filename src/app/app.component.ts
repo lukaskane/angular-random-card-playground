@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 /* @Component - Данный декоратор обозначает класс как Angular Component, с соответсвующими метаданными
  * в данном случае указаны следующие метаданные: */
@@ -23,6 +24,7 @@ export class AppComponent {
    * На основе этого массива отрисовывается список со случайными карточками
    */
   public items: string[] = [];
+  public cardType: FormControl = new FormControl('');
 
   /**
    * Метод вызывается при нажатии на кнопку add random item.
@@ -33,6 +35,14 @@ export class AppComponent {
     let possibleItems = ['cat-fact', 'random-joke', 'random-idea'];
     let index = this.getRandomInt(0, possibleItems.length);
     this.items.push(possibleItems[index]);
+  }
+
+  addCertain(): void {
+    let cardType = this.cardType.value;
+
+    if (!cardType) return;
+
+    this.items.push(cardType);
   }
 
   /**
