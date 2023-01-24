@@ -1,12 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { interval, map, takeWhile } from 'rxjs';
+import { filter, interval, map, takeWhile } from 'rxjs';
 
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
-  styleUrls: ['./home-page.component.css'],
 })
 export class HomePageComponent implements OnInit {
   /**
@@ -16,14 +15,11 @@ export class HomePageComponent implements OnInit {
    */
   public items: string[] = [];
   public cardType: FormControl = new FormControl('');
+  public cardAmount: FormControl = new FormControl(1);
 
   public constructor(private http: HttpClient) {}
 
-  ngOnInit(): void {
-    this.cardType.valueChanges.subscribe(
-      (value) => (this.items = this.items.map((item) => value))
-    );
-  }
+  ngOnInit(): void {}
 
   /**
    * Метод вызывается при нажатии на кнопку add random item.
@@ -38,11 +34,16 @@ export class HomePageComponent implements OnInit {
 
   addCertain(): void {
     let cardType = this.cardType.value;
+    let amount: number = this.cardAmount.value;
+
+    console.log(amount, typeof amount);
 
     if (!cardType) return;
 
-    this.items.push(cardType);
+    for (let i = 0; i < amount; i++) this.items.push(cardType);
+
     this.cardType.setValue('');
+    this.cardAmount.setValue(1);
   }
 
   get certainCardTypeSet(): boolean {

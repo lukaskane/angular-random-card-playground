@@ -1,8 +1,12 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-lg-2 col-md-3 col-sm-12">
-      <button class="btn btn-block btn-primary ml-1 mt-1" (click)="addRandom()">
-        add random item
+      <button
+        class="btn btn-block btn-primary ml-1 mt-1"
+        (click)="addRandom()"
+        *ngIf="!certainCardTypeSet"
+      >
+        add random card
       </button>
 
       <select class="form-control mt-1 ml-1" [formControl]="cardType">
@@ -12,16 +16,24 @@
         <option value="random-idea">Random Activity</option>
       </select>
 
+      <input
+        type="number"
+        class="form-control mt-1 ml-1"
+        [formControl]="cardAmount"
+        max="15"
+        *ngIf="certainCardTypeSet"
+      />
+
       <button
         class="btn btn-block btn-primary ml-1 mt-1"
         (click)="addCertain()"
         *ngIf="certainCardTypeSet"
       >
-        Add Certain
+        Add Certain Card
       </button>
 
       <button
-        class="btn btn-block btn-danger ml-1 mt-1"
+        class="btn btn-block btn-outline-danger ml-1 mt-1"
         (click)="clear()"
         *ngIf="items.length"
       >
