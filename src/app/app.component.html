@@ -1,62 +1,30 @@
-<nav class="navbar navbar-light mb-2" style="background-color: #e3f2fd;">
-  <a class="navbar-brand" href="#">Angular Sandbox</a>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarNav"
+    aria-controls="navbarNav"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="home" routerLinkActive="active"
+          >Home <span class="sr-only">(current)</span></a
+        >
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="about" routerLinkActive="active"
+          >About</a
+        >
+      </li>
+    </ul>
+  </div>
 </nav>
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-lg-2 col-md-3 col-sm-12">
-      <button class="btn btn-block btn-primary ml-1 mt-1" (click)="addRandom()">
-        add random item
-      </button>
-
-      <select class="form-control mt-1 ml-1" [formControl]="cardType">
-        <option value="">None</option>
-        <option value="cat-fact">Cat fact</option>
-        <option value="random-joke">Random Joke</option>
-        <option value="random-activity">Random Activity</option>
-      </select>
-
-      <button
-        class="btn btn-block btn-primary ml-1 mt-1"
-        (click)="addCertain()"
-        *ngIf="certainCardTypeSet"
-      >
-        Add Certain
-      </button>
-
-      <button
-        class="btn btn-block btn-danger ml-1 mt-1"
-        (click)="clear()"
-        *ngIf="items.length"
-      >
-        clear
-      </button>
-    </div>
-
-    <div class="col-lg-10 col-md-9 col-sm-12">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-md-6">
-            <ng-container *ngFor="let item of items; let i = index">
-              <div class="mt-1" *ngIf="i % 2 === 0">
-                <cat-fact *ngIf="item == 'cat-fact'"></cat-fact>
-                <random-joke *ngIf="item == 'random-joke'"></random-joke>
-                <random-idea *ngIf="item === 'random-idea'"></random-idea>
-              </div>
-            </ng-container>
-          </div>
-
-          <div class="col-md-6">
-            <ng-container *ngFor="let item of items; let i = index">
-              <div class="mt-1" *ngIf="i % 2 !== 0">
-                <cat-fact *ngIf="item == 'cat-fact'"></cat-fact>
-                <random-joke *ngIf="item == 'random-joke'"></random-joke>
-                <random-idea *ngIf="item === 'random-idea'"></random-idea>
-              </div>
-            </ng-container>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+<router-outlet></router-outlet>

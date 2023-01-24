@@ -1,0 +1,58 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-2 col-md-3 col-sm-12">
+      <button class="btn btn-block btn-primary ml-1 mt-1" (click)="addRandom()">
+        add random item
+      </button>
+
+      <select class="form-control mt-1 ml-1" [formControl]="cardType">
+        <option value="">None</option>
+        <option value="cat-fact">Cat fact</option>
+        <option value="random-joke">Random Joke</option>
+        <option value="random-idea">Random Activity</option>
+      </select>
+
+      <button
+        class="btn btn-block btn-primary ml-1 mt-1"
+        (click)="addCertain()"
+        *ngIf="certainCardTypeSet"
+      >
+        Add Certain
+      </button>
+
+      <button
+        class="btn btn-block btn-danger ml-1 mt-1"
+        (click)="clear()"
+        *ngIf="items.length"
+      >
+        clear
+      </button>
+    </div>
+
+    <div class="col-lg-10 col-md-9 col-sm-12">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-6">
+            <ng-container *ngFor="let item of items; let i = index">
+              <div class="mt-1" *ngIf="i % 2 === 0">
+                <cat-fact *ngIf="item == 'cat-fact'"></cat-fact>
+                <random-joke *ngIf="item == 'random-joke'"></random-joke>
+                <random-idea *ngIf="item === 'random-idea'"></random-idea>
+              </div>
+            </ng-container>
+          </div>
+
+          <div class="col-md-6">
+            <ng-container *ngFor="let item of items; let i = index">
+              <div class="mt-1" *ngIf="i % 2 !== 0">
+                <cat-fact *ngIf="item == 'cat-fact'"></cat-fact>
+                <random-joke *ngIf="item == 'random-joke'"></random-joke>
+                <random-idea *ngIf="item === 'random-idea'"></random-idea>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
