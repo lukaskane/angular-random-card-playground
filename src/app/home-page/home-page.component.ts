@@ -1,7 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { filter, interval, map, takeWhile } from 'rxjs';
+import { interval, map, takeWhile } from 'rxjs';
 
 @Component({
   selector: 'app-home-page',
@@ -16,8 +15,6 @@ export class HomePageComponent implements OnInit {
   public items: string[] = [];
   public cardType: FormControl = new FormControl('');
   public cardAmount: FormControl = new FormControl(1);
-
-  public constructor(private http: HttpClient) {}
 
   ngOnInit(): void {}
 
@@ -35,8 +32,6 @@ export class HomePageComponent implements OnInit {
   addCertain(): void {
     let cardType = this.cardType.value;
     let amount: number = this.cardAmount.value;
-
-    console.log(amount, typeof amount);
 
     if (!cardType) return;
 
